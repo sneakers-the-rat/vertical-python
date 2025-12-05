@@ -40,10 +40,17 @@ $ vertical-python ./hello_world.vpy
 hello world!
 ```
 
+or encode a `.py` file to a `.vpy` file:
+
+```bash
+$ vertical-python ./hello_world.vpy --print > hello_world.py
+$ vertical-python --encode ./hello_world.py > hello_world.vpy
+```
+
 ## CLI
 
 ```
-usage: vertical-python [-h] [--print] path
+usage: vertical-python [-h] [--print | --encode] path
 
 python but vertical
 
@@ -53,5 +60,6 @@ positional arguments:
 options:
   -h, --help  show this help message and exit
   --print     just print the rotated vpy, not eval
+  --encode    treat PATH as .py and print vertical .vpy to stdout
 
 ```
