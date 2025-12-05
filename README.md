@@ -63,3 +63,8 @@ options:
   --encode    treat PATH as .py and print vertical .vpy to stdout
 
 ```
+
+## Changelog
+
+- v0.2.0: [`#1`](https://github.com/sneakers-the-rat/vertical-python/pull/1) - [@mathematicalmichael](https://github.com/mathematicalmichael) - encode `.py` to `.vpy` 
+- v0.1.0: Initial functionality
