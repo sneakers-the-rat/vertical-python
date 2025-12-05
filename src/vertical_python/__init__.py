@@ -13,12 +13,12 @@ def rotate(text: str) -> str:
     for line in lines:
         for i, char in enumerate(line):
             if len(vertical) - 1 < i:
-                vertical.append('')
+                vertical.append("")
             vertical[i] += char
 
     # right to left
     vertical = reversed(vertical)
-    return '\n'.join(vertical)
+    return "\n".join(vertical)
 
 
 def encode_py_to_vpy(text: str) -> str:
