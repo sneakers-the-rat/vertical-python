@@ -1,9 +1,17 @@
 import argparse
+import re
 from pathlib import Path
 
+CODEC_PATTERN = re.compile(r"^[ \t\f]*#.*?coding[:=][ \t]*([-_.a-zA-Z0-9]+)")
+"""https://peps.python.org/pep-0263/"""
 
-def rotate(text: str) -> str:
+
+def rotate(text: str | memoryview) -> str:
+    if isinstance(text, memoryview):
+        text = text.tobytes().decode("utf-8")
+
     lines = text.splitlines()
+    lines = strip_encoding(lines)
 
     # pad trailing whitespace
     max_width = max(len(line) for line in lines)
@@ -18,6 +26,8 @@ def rotate(text: str) -> str:
 
     # right to left
     vertical = reversed(vertical)
+    # strip trailing space
+    vertical = [v.rstrip() for v in vertical]
     return "\n".join(vertical)
 
 
@@ -26,6 +36,12 @@ def encode_py_to_vpy(text: str) -> str:
     for _ in range(3):
         text = rotate(text)
     return text
+
+
+def strip_encoding(lines: list[str]) -> list[str]:
+    if CODEC_PATTERN.match(lines[0]):
+        return [""] if len(lines) == 1 else lines[1:]
+    return lines
 
 
 def parse_args() -> argparse.Namespace:
