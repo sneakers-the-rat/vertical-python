@@ -18,9 +18,17 @@ repository = "https://github.com/sneakers-the-rat/vertical-python/"
 [project.scripts]
 vertical-python = "vertical_python:main"
 
+[project.optional-dependencies]
+tests = [
+    "pytest>=9.0.1",
+]
+
 [build-system]
 requires = ["pdm-backend"]
 build-backend = "pdm.backend"
+
+[tool.black]
+exclude = ".*tests/data.*"
 
 
 [tool.pdm]
